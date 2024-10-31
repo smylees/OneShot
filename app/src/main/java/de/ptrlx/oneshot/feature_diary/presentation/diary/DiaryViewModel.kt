@@ -151,6 +151,12 @@ class DiaryViewModel @Inject constructor(
                     }
                 }
             }
+            is DiaryEvent.CaptureShare -> {
+                hideModalBottomSheet()
+                currentImageAddEditEntry?.relativePath?.let {
+                    fileManager?.shareImage(it)
+                }
+            }
             is DiaryEvent.DiaryEditEntry -> {
                 currentImageAddEditEntry = event.entry
                 currentIsNewEntry = false
